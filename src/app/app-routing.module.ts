@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventListComponent } from './components/event-list/event-list.component';
+import { ListComponent } from './components/list/list.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path:'event-list',
-    component:EventListComponent
+    component:ListComponent
   },
   {
     path:'login',

@@ -1,0 +1,9 @@
+form {
+    width: 50vw;
+    margin: 4rem auto;
+}
+
+button {
+    display: block;
+    margin: 1rem auto;
+}

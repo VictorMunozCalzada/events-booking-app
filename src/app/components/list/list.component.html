@@ -1,0 +1,32 @@
+<h1>Searching Event</h1>
+Filter by size:
+<input type="text" [(ngModel)]="sizeFilter" (ngModelChange)="filter()" /> Filter
+by price:
+<input
+  type="range"
+  min="0"
+  max="30"
+  [(ngModel)]="priceFilter"
+  (ngModelChange)="filter()"
+/>
+{{ priceFilter }}
+<table>
+  <thead>
+    <tr>
+      <th>SIZE</th>
+      <th>PRICE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let c of camisetasFiltrado
+          | paginate : { itemsPerPage: ipp, currentPage: cp }
+      "
+    >
+      <td>{{ c.name }}</td>
+      <td>{{ c.price }}</td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="cp = $event"></pagination-controls>

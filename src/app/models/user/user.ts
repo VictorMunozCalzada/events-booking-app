@@ -20,27 +20,27 @@ export class User {
     }
 
     public get name(): string{
-        return this.name;
+        return this._name;
     }
     public get password(): string{
-        return this.password;
+        return this._password;
     }
     public get role(): string{
-        return this.role;
+        return this._role;
     }
     public get email(): string{
-        return this.email;
+        return this._email;
     }
     public get civil_status(): string{
-        return this.civil_status;
+        return this._civil_status;
     }
     public get gender(): string{
-        return this.gender;
+        return this._gender;
     }
     public get interest_info(): string{
-        return this.interest_info;
+        return this._interest_info;
     }
     public get conditions(): string{
-        return this.conditions;
+        return this._conditions;
     }
 }

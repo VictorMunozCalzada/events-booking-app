@@ -4,6 +4,8 @@ import { ListComponent } from './components/list/list.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ModifyComponent } from './components/modify/modify.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path:'register',
     component:RegisterComponent
+  },
+  {
+    path:'modify',
+    component:ModifyComponent
+  },
+  {
+    path:'**',
+    component:PageNotFoundComponent
   },
 ];
 

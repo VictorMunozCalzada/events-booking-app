@@ -8,10 +8,10 @@ export class User {
     private _interest_info:string;
     private _conditions :string;
 
-    constructor(name:string, password:string, role:string, email:string, civil_status:string, gender:string, interest_info:string, conditions:string){
+    constructor(name:string, password:string, email:string, civil_status:string, gender:string, interest_info:string, conditions:string){
         this._name=name;
         this._password=password;
-        this._role=role;
+        this._role="comprador";
         this._email=email;
         this._civil_status=civil_status;
         this._gender=gender;

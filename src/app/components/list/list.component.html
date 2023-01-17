@@ -10,22 +10,30 @@ by price:
   (ngModelChange)="filter()"
 />
 {{ priceFilter }}
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>SIZE</th>
-      <th>PRICE</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Price</th>
     </tr>
   </thead>
   <tbody>
     <tr
       *ngFor="
-        let c of camisetasFiltrado
+        let c of eventosFiltrado
           | paginate : { itemsPerPage: ipp, currentPage: cp }
       "
     >
       <td>{{ c.name }}</td>
+      <td>{{ c.type }}</td>
+      <td>{{ c.date }}</td>
+      <td>{{ c.location }}</td>
       <td>{{ c.price }}</td>
+      <td><a href="/modify" class ="btn btn-warning">Modify</a></td>
+      <td><a href="/modify" class ="btn btn-danger" (click)="deleteEvent()">Delete</a></td>
     </tr>
   </tbody>
 </table>

@@ -11,7 +11,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './components/list/list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { CheckPassDirective } from './directives/check-pass.directive';
+import { ModifyComponent } from './components/modify/modify.component';
+import { CheckMaritalStatusDirective } from './directives/check-marital-status.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +22,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    CheckPassDirective,
+    ModifyComponent,
+    CheckMaritalStatusDirective,
   ],
   imports: [
     BrowserModule,

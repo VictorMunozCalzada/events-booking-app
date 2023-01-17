@@ -4,42 +4,35 @@
     [formGroup]="registerForm"
     (ngSubmit)="submit()"
   >
-    <h2 class="text-center mb-4">Reactive Form</h2>
     <div class="col-md-6">
       <label for="username" class="form-label">Usuario:</label>
       <input
         type="text"
         class="form-control"
-        [ngClass]="{ 'is-invalid': registerForm.controls.username.errors }"
-        [ngClass]="{ 'is-valid': !registerForm.controls.username.errors }"
         id="username"
         formControlName="username"
       />
       <div
         *ngIf="this.registerForm.get('username')?.errors?.['required'] && this.registerForm.get('username')?.touched"
-        class="form-text text-danger"
-      >
-        El nombre de usuario requerido.
+        class="form-text text-danger">
+        El nombre de usuario es obligatorio.
       </div>
       <div
         *ngIf="this.registerForm.get('username')?.errors?.['minlength'] && this.registerForm.get('username')?.touched"
-        class="form-text text-danger"
-      >
-        La longitud tiene que ser de 8 o más.
+        class="form-text text-danger">
+        Minimo 6 caracteres.
       </div>
       <div
-        *ngIf="this.registerForm.get('username')?.errors?.['maxlength'] && this.registerForm.get('username')?.touched"
-        class="form-text text-danger"
-      >
-        La longitud no tiene que ser mayor de 20.
+        *ngIf="this.registerForm.get('username')?.errors?.['pattern'] && this.registerForm.get('username')?.touched"
+      class="form-text text-danger">
+      Solo letras.
       </div>
     </div>
+
     <div class="col-md-6">
       <label for="email" class="form-label">Email:</label>
       <input
         type="email"
-        [ngClass]="{ 'is-invalid': registerForm.controls.email.errors }"
-        [ngClass]="{ 'is-valid': !registerForm.controls.email.errors }"
         class="form-control"
         id="email"
         formControlName="email"
@@ -48,7 +41,7 @@
         *ngIf="this.registerForm.get('email')?.errors?.['required'] && this.registerForm.get('email')?.touched"
         class="form-text text-danger"
       >
-        El email es requerido.
+        El email es obligatorio.
       </div>
       <div
         *ngIf="this.registerForm.get('email')?.errors?.['pattern'] && this.registerForm.get('email')?.touched"
@@ -57,12 +50,11 @@
         El email no tiene el formato correcto
       </div>
     </div>
+
     <div class="col-md-6">
       <label for="password" class="form-label">Contraseña:</label>
       <input
         type="password"
-        [ngClass]="{ 'is-invalid': registerForm.controls.password.errors }"
-        [ngClass]="{ 'is-valid': !registerForm.controls.password.errors }"
         class="form-control"
         id="password"
         formControlName="password"
@@ -71,38 +63,43 @@
         *ngIf="this.registerForm.get('password')?.errors?.['required'] && this.registerForm.get('password')?.touched"
         class="form-text text-danger"
       >
-        La contraseña es requerida.
+        La contraseña es obligatoria.
       </div>
+      <div
+      *ngIf="this.registerForm.get('password')?.errors?.['minlength'] && this.registerForm.get('password')?.touched"
+      class="form-text text-danger"
+    >
+      Minimo 8 caracteres.
+    </div>
       <div
         *ngIf="this.registerForm.get('password')?.errors?.['pattern'] && this.registerForm.get('password')?.touched"
         class="form-text text-danger"
       >
-        La contraseña tiene que contener minusculas, mayusculas, numeros y
-        simbolos.
+        La contraseña tiene que contener solo letras o numeros
       </div>
     </div>
+
     <div class="col-md-6">
       <label for="retry-password" class="form-label">Repite contraseña:</label>
       <input
         type="password"
-        [ngClass]="{ 'is-invalid': registerForm.controls.retryPassword.errors }"
-        [ngClass]="{ 'is-valid': !registerForm.controls.retryPassword.errors }"
         class="form-control"
         id="retryPassword"
         formControlName="retryPassword"
+        appCheckPass 
+        [parametro]="this.registerForm.value.password"
       />
       <div
         *ngIf="this.registerForm.get('retryPassword')?.errors?.['required'] && this.registerForm.get('retryPassword')?.touched"
         class="form-text text-danger"
       >
-        La contraseña es requerida.
+        La contraseña es obligatoria.
       </div>
       <div
-        *ngIf="this.registerForm.get('retryPassword')?.errors?.['pattern'] && this.registerForm.get('retryPassword')?.touched"
+        *ngIf="this.registerForm.get('retryPassword')?.errors?.['checkPass'] && this.registerForm.get('retryPassword')?.touched"
         class="form-text text-danger"
       >
-        La contraseña tiene que contener minusculas, mayusculas, numeros y
-        simbolos.
+      Contraseñas deben coincidir
       </div>
     </div>
 
@@ -113,12 +110,21 @@
         class="form-select"
         formControlName="maritalStatus"
         (change)="changeStatus($event)"
+        appCheckMaritalStatus
       >
         <option *ngFor="let status of maritalStatusOptions">
           {{ status }}
         </option>
       </select>
     </div>
+    <div
+    *ngIf="this.registerForm.get('maritalStatus')?.errors?.['checkMaritalStatus'] && this.registerForm.get('maritalStatus')?.touched"
+    class="form-text text-danger"
+    >
+    Debe seleccionar un valor válido
+    </div>
+    
+
     <div class="offset-md-1 col-md-3">
       <p>Genero:</p>
       <div class="form-check form-check-inline">
@@ -128,8 +134,8 @@
           name="inlineRadioOptions"
           id="man"
           value="man"
-          (change)="changeGender($event)"
         />
+        <!--(change)="changeGender($event)"-->
         <label class="form-check-label" for="inlineRadio1">Hombre</label>
       </div>
       <div class="form-check form-check-inline">
@@ -139,25 +145,25 @@
           name="inlineRadioOptions"
           id="woman"
           value="woman"
-          (change)="changeGender($event)"
         />
+        <!--(change)="changeGender($event)"-->
         <label class="form-check-label" for="inlineRadio2">Mujer</label>
       </div>
     </div>
+    
     <div class="col-md-4">
       <p>Intereses:</p>
       <div
         class="form-check-inline"
-        formGroupName="interestsGroup"
         *ngFor="let interest of interestsList"
       >
         <label class="form-check-label">
           <input
             class="form-check-input"
             type="checkbox"
-            value=""
+            value="{{ interest }}"
             id="flexCheckDefault"
-            formControlName="{{ interest }}"
+            (change)="onCheckChange($event)"
           />
           {{ interest }}
         </label>
@@ -172,6 +178,7 @@
         At least one checkbox is required to check
       </div> -->
     </div>
+
     <div class="col-12">
       <div class="form-check pt-4">
         <input
@@ -184,7 +191,7 @@
           Aceptar terminos y condiciones.
         </label>
       </div>
-      <div
+      <!-- <div
         class="form-text text-danger"
         *ngIf="
           this.registerForm.controls['acceptConditions'].errors &&
@@ -192,7 +199,7 @@
         "
       >
         Es obligatorio marcar esta casilla
-      </div>
+      </div> -->
     </div>
     <div class="col-12">
       <button
@@ -201,7 +208,7 @@
         type="submit"
         [disabled]="registerForm.invalid"
       >
-        Registrar
+        Registrarse
       </button>
     </div>
   </form>

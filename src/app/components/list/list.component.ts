@@ -8,30 +8,26 @@ import { Event } from '../../models/event/event';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  camisetas!: Event[];
+  events!: Event[];
   ipp!: number;
   cp!: number;
 
 
   // Filter
-  camisetasFiltrado: Event[] = [];
+  eventosFiltrado: Event[] = [];
   sizeFilter!: string;
   priceFilter!: number;
 
   constructor(private eventsService:EventsService) {
 
-
-
-
-    
    }
 
   ngOnInit(): void {
-    this.camisetas = this.eventsService.getEvents();
+    this.events = this.eventsService.getEvents();
     this.ipp = 10;
     this.cp = 1;
 
-    this.camisetasFiltrado = this.camisetas;
+    this.eventosFiltrado = this.events;
     this.sizeFilter = "";
     this.priceFilter = 30;
   }
@@ -39,7 +35,7 @@ export class ListComponent implements OnInit {
   filter(){
     console.log(this.sizeFilter);
 
-    this.camisetasFiltrado = this.camisetas.filter(value => {
+    this.eventosFiltrado = this.events.filter(value => {
 
       if(value.name.indexOf(this.sizeFilter.toUpperCase()) != -1){
         if(value.price <= this.priceFilter)
@@ -48,9 +44,11 @@ export class ListComponent implements OnInit {
       return false;
 
     });
-
-
-
   }
+
+  deleteEvent(){
+    console.log("deleted");
+  }
+
 
 }

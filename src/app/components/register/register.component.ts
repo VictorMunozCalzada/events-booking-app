@@ -12,35 +12,38 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
  
   maritalStatusOptions:string [] = [];
-  status = "";
   interestsList:string [] = [];
-  interestsChecked = [];
+  interestsChecked :string[]= [];
   
 
   data!:string;
 
   registerForm=new FormGroup({
+    
     username:new FormControl('',[
-    Validators.required,
-    Validators.minLength(8),
-    Validators.maxLength(20)]),
+      Validators.required,
+      Validators.minLength(6),
+      Validators.pattern("[A-Za-z]+")]),
 
     password: new FormControl('',[
       Validators.required,
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
+      Validators.minLength(8),
+      Validators.pattern("[A-Za-z0-9]+")]),
 
     retryPassword: new FormControl('',[
-      Validators.required,
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
+      Validators.required]),
 
     email: new FormControl('',[
       Validators.required,
       //Validators.email
       Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]),
 
-    maritalStatus: new FormControl(false, [Validators.requiredTrue]),
+    maritalStatus: new FormControl(),
 
-    //gender: new FormControl(this.changeGender,[Validators.requiredTrue]),
+    gender: new FormControl(),
+
+    // gender: new FormControl(this.changeGender,[
+    //   Validators.required]),
 
       interestsGroup: new FormGroup({
       Juegos: new FormControl(true),
@@ -55,23 +58,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.data="";
     this.interestsList = ['Juegos', 'Deportes', 'Moda'];
-    this.maritalStatusOptions = ['Soltero', 'Casado', 'Divorciado'];
+    this.maritalStatusOptions = ["",'Soltero', 'Casado', 'Divorciado'];
   }
 
   changeStatus(e?: any) {
     console.log(e.target.value);
-
-   if(this.maritalStatusOptions.includes(e.target.value)){
-    this.registerForm.controls.maritalStatus.setValue(e.target.value, {
-      onlySelf: true
-    });
-    console.log('true')
-   }else {
-    console.log('false')
-   }
   }
-
-
 
   changeGender(e?: any) {
     console.log(e.target.value);
@@ -83,23 +75,36 @@ export class RegisterComponent implements OnInit {
       console.log('false');
       return false;
      }
+  }
 
+  onCheckChange(e?: any) {
+
+     if (this.interestsChecked.includes(e.target.value)) {
+      for( var i = 0; i < this.interestsChecked.length; i++){ 
+    
+        if ( this.interestsChecked[i] == e.target.value) { 
+    
+          this.interestsChecked.splice(i, 1); 
+        }
+     }}
+     else {
+      this.interestsChecked.push(e.target.value)
+      return ;
+     }
   }
 
 
-
-
-
   submit(){
+    alert(
     this.data=`
     Username:${this.registerForm.value.username}
     Contraseña:${this.registerForm.value.password}
     Email:${this.registerForm.value.email}
     Estado civil:${this.registerForm.value.maritalStatus}
-    `
-
+    Genero:${this.registerForm.value.gender}
+    Intereses:${""}
+    `)
   }
-
 }
 
 // function requireCheckboxesToBeCheckedValidator(minRequired = 1): ValidatorFn {

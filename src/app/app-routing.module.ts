@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ModifyComponent } from './components/modify/modify.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -13,8 +14,12 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
-    path:'event-list',
+    path:'events',
     component:ListComponent
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
   },
   {
     path:'login',

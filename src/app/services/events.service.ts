@@ -19,7 +19,7 @@ export class EventsService {
 
     for (let i = 0; i < 100; i++) {
       let j:number = Math.trunc(Math.random() * 5);
-      camisetas.push(new Event(names[j],types[j],dates[j],locations[j],prices[j]));
+      camisetas.push(new Event(i, names[j],types[j],dates[j],locations[j],prices[j]));
     }
 
     return camisetas;

@@ -1,16 +1,22 @@
 export class Event {
+    private _id : number;
     private _name :string;
     private _type :string;
     private _date :string;
     private _location :string;
     private _price :number;
 
-    constructor(name:string, type:string, date:string, location:string, price:number){
+    constructor(id:number, name:string, type:string, date:string, location:string, price:number){
+        this._id=id;
         this._name=name;
         this._type=type;
         this._date=date;
         this._location=location;
         this._price=price;
+    }
+
+    public get id(): number{
+        return this._id;
     }
 
     public get name(): string{

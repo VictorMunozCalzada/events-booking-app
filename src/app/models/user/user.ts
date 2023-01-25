@@ -1,26 +1,26 @@
 export class User {
-    private _name :string;
+    private _username :string;
     private _password :string;
     private _role :string;
     private _email :string;
-    private _civil_status :string;
+    private _civilStatus :string;
     private _gender :string;
     private _interest_info:string;
     private _conditions :string;
 
-    constructor(name:string, password:string, email:string, civil_status:string, gender:string, interest_info:string, conditions:string){
-        this._name=name;
+    constructor(username:string, password:string, email:string, civilStatus:string, gender:string, interest_info:string, conditions:string){
+        this._username=username;
         this._password=password;
         this._role="comprador";
         this._email=email;
-        this._civil_status=civil_status;
+        this._civilStatus=civilStatus;
         this._gender=gender;
         this._interest_info=interest_info;
         this._conditions=conditions;
     }
 
-    public get name(): string{
-        return this._name;
+    public get username(): string{
+        return this._username;
     }
     public get password(): string{
         return this._password;
@@ -32,7 +32,7 @@ export class User {
         return this._email;
     }
     public get civil_status(): string{
-        return this._civil_status;
+        return this._civilStatus;
     }
     public get gender(): string{
         return this._gender;

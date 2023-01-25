@@ -11,6 +11,7 @@ export class ListComponent implements OnInit {
   events!: Event[];
   ipp!: number;
   cp!: number;
+  modified:boolean=false;
 
 
   // Filter
@@ -18,7 +19,17 @@ export class ListComponent implements OnInit {
   sizeFilter!: string;
   priceFilter!: number;
 
-  constructor(private eventsService:EventsService) {
+  //Event
+  id!:number;
+  name: any;
+  type:any;
+  date:any;
+  location:any;
+  price:any;
+
+
+
+  constructor(private eventsService:EventsService,) {
 
    }
 
@@ -50,5 +61,24 @@ export class ListComponent implements OnInit {
     console.log("deleted");
   }
 
+  modifyEvent(event:any){
+    console.log(event.name);
+    console.log(event.date);
+    this.modified=true;
+    this.id = event.id;
+    this.name = event.name;
+    this.type = event.type;
+    this.date = event.date;
+    this.location = event.location;
+    this.price = event.price;
+    
+  }
+
+  getEvent(e:any){
+  console.log(e);
+  console.log(e.name);
+  // recorrer
+  this.events;
+  }
 
 }

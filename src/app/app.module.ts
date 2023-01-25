@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -14,10 +13,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CheckPassDirective } from './directives/check-pass.directive';
 import { ModifyComponent } from './components/modify/modify.component';
 import { CheckMaritalStatusDirective } from './directives/check-marital-status.directive';
+import { ProfileComponent } from './components/profile/profile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     ListComponent,
     HomeComponent,
     LoginComponent,
@@ -25,6 +25,7 @@ import { CheckMaritalStatusDirective } from './directives/check-marital-status.d
     CheckPassDirective,
     ModifyComponent,
     CheckMaritalStatusDirective,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

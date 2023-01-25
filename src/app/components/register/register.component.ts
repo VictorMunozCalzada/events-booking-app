@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +13,9 @@ export class RegisterComponent implements OnInit {
   interestsList:string [] = [];
   interestsChecked :string[]= [];
   
-
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
   data!:string;
 
   registerForm=new FormGroup({
@@ -54,6 +54,8 @@ export class RegisterComponent implements OnInit {
       acceptConditions: new FormControl(false, [Validators.requiredTrue]),
 
   })
+
+  constructor(private authService: AuthService) {}
   
   ngOnInit(): void {
     this.data="";
@@ -94,7 +96,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  submit(){
+  submit():void {
     alert(
     this.data=`
     Username:${this.registerForm.value.username}
@@ -104,27 +106,6 @@ export class RegisterComponent implements OnInit {
     Genero:${this.registerForm.value.gender}
     Intereses:${""}
     `)
+
   }
 }
-
-// function requireCheckboxesToBeCheckedValidator(minRequired = 1): ValidatorFn {
-//   function validate (formGroup: FormGroup) {
-//     let checked = 0;
-
-//     Object.keys(formGroup.controls).forEach(key => {
-//       const control = formGroup.controls[key];
-
-//       if (control.value === true) {
-//         checked ++;
-//       }
-//     });
-
-//     if (checked < minRequired) {
-//       return {
-//         requireOneCheckboxToBeChecked: true,
-//       };
-//     }
-
-//     return null;
-//   };
-// }

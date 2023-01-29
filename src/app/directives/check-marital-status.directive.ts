@@ -17,7 +17,7 @@ export class CheckMaritalStatusDirective implements Validator{
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
 
-    if((control.value=="Soltero")||(control.value=="Casado")||(control.value=="Divorciado")){
+    if((control.value=="Soltero/a")||(control.value=="Casado/a")||(control.value=="Divorciado/a")){
       return null;//cuando no hay error
     }else{
       return {'checkMaritalStatus': true};

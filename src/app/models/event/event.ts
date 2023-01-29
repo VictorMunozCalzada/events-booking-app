@@ -38,6 +38,28 @@ export class Event {
     public get price(): number{
         return this._price;
     }
+
+    public set name(value){
+        this._name=value;
+    }
+
+    public set type(value){
+        this._type=value;
+    }
+
+    public set date(value){
+        this._date=value;
+    }
+
+    public set location(value){
+        this._location=value;
+    }
+
+    public set price(value){
+        this._price=value;
+    }
+
+
 }
 
 

@@ -28,9 +28,8 @@ export class AuthService {
     return userSend;
     };
 
-  register(username: string, password: string):any {
-    let object;
-    return object;
-     
+  register(user:User):void {
+     this.userService.addUser(user);
+
   }
 }

@@ -57,8 +57,14 @@ export class ListComponent implements OnInit {
     });
   }
 
-  deleteEvent(){
-    console.log("deleted");
+  deleteEvent(e:any){
+    this.events.forEach(event => {
+      if (event.id==e.id){
+        const indexToDelete = this.events.findIndex(i => i.id == e.id);
+        this.events.splice(indexToDelete, 1);
+        alert('Evento '+(e.id+1)+' eliminado');
+      }
+    });
   }
 
   modifyEvent(event:any){
@@ -71,14 +77,17 @@ export class ListComponent implements OnInit {
     this.date = event.date;
     this.location = event.location;
     this.price = event.price;
-    
   }
 
   getEvent(e:any){
-  console.log(e);
-  console.log(e.name);
-  // recorrer
-  this.events;
+  this.events.forEach(event => {
+    if (event.id==e.id){
+      event.name=e.name;
+      event.location=e.location;
+      event.price=e.price;
+      event.date=e.date;
+    }
+  });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user/user';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  user!:User;
  
+  
   maritalStatusOptions:string [] = [];
   interestsList:string [] = [];
   interestsChecked :string[]= [];
+  genderList:string[]=[];
   
   isSuccessful = false;
   isSignUpFailed = false;
@@ -59,22 +64,16 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit(): void {
     this.data="";
+    this.genderList=["Hombre","Mujer","Otros"]
     this.interestsList = ['Juegos', 'Deportes', 'Moda'];
-    this.maritalStatusOptions = ["",'Soltero', 'Casado', 'Divorciado'];
-  }
-
-  changeStatus(e?: any) {
-    console.log(e.target.value);
+    this.maritalStatusOptions = ["",'Soltero/a', 'Casado/a', 'Divorciado/a'];
   }
 
   changeGender(e?: any) {
-    console.log(e.target.value);
      if (e.target.value === "man" || e.target.value === "woman") {
-      console.log('true');
       return true;
   
      }else {
-      console.log('false');
       return false;
      }
   }
@@ -95,17 +94,16 @@ export class RegisterComponent implements OnInit {
      }
   }
 
-
   submit():void {
-    alert(
-    this.data=`
-    Username:${this.registerForm.value.username}
-    Contraseña:${this.registerForm.value.password}
-    Email:${this.registerForm.value.email}
-    Estado civil:${this.registerForm.value.maritalStatus}
-    Genero:${this.registerForm.value.gender}
-    Intereses:${""}
-    `)
-
+    const userToAdd= new User(
+      this.registerForm.value.username!,
+      this.registerForm.value.password!,
+      this.registerForm.value.email!,
+      this.registerForm.value.maritalStatus,
+      this.registerForm.value.gender,
+      // this.registerForm.value.interestsGroup!
+      "interests")
+      
+    this.authService.register(userToAdd);
   }
 }

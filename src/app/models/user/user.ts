@@ -6,9 +6,8 @@ export class User {
     private _civilStatus :string;
     private _gender :string;
     private _interest_info:string;
-    private _conditions :string;
 
-    constructor(username:string, password:string, email:string, civilStatus:string, gender:string, interest_info:string, conditions:string){
+    constructor(username:string, password:string, email:string, civilStatus:string, gender:string, interest_info:string){
         this._username=username;
         this._password=password;
         this._role="comprador";
@@ -16,7 +15,6 @@ export class User {
         this._civilStatus=civilStatus;
         this._gender=gender;
         this._interest_info=interest_info;
-        this._conditions=conditions;
     }
 
     public get username(): string{
@@ -39,8 +37,5 @@ export class User {
     }
     public get interest_info(): string{
         return this._interest_info;
-    }
-    public get conditions(): string{
-        return this._conditions;
     }
 }

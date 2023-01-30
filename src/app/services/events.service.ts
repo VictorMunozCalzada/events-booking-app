@@ -11,10 +11,10 @@ export class EventsService {
   getEvents():Event[] {
     let events:Event[] = [];
 
-    let names = ["rytrt","rdedytrt","ds","ss","deded"]
+    let names = ["eventName","eventName","eventName","eventName","eventName"]
     let types = ["concert","cinema","museu","fira","festival"];
     let prices = [10,15,17,20,25];
-    let dates = ["2023-05-27","2023-12-08","2023-10-02","2023-18-10","2023-30-07"];
+    let dates = ["2023-05-27","2023-12-08","2023-10-02","2023-05-18","2023-07-30"];
     let locations = ["barcelona","madrid","sevilla","valencia","valladolid"];
 
     for (let i = 0; i < 100; i++) {

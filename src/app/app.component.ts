@@ -12,8 +12,6 @@ export class AppComponent implements OnInit {
   title = 'events-booking-app';
 
   isLoggedIn = false;
-  showEventList = false;
-  showProfile = false;
 
   user!:User;
   username!: string;
@@ -22,14 +20,14 @@ export class AppComponent implements OnInit {
   constructor(private storageService: StorageService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    // Check the obserbable status
+    this.authService.isLoggedIn.subscribe(status => this.isLoggedIn = status);
     // Check if user is in sessionStorage
     this.isLoggedIn = this.storageService.isLoggedIn();
-    // Check the obserbable status
-    // this.authService.isLoggedIn.subscribe(status => this.isLoggedIn = status);
+
+
 
     if (this.isLoggedIn) {
-      this.showEventList = true;
-      this.showProfile = true;
       this.username = this.storageService.getUser()._username;
       this.role = this.storageService.getUser()._role;
 

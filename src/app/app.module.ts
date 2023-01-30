@@ -14,6 +14,7 @@ import { CheckPassDirective } from './directives/check-pass.directive';
 import { ModifyComponent } from './components/modify/modify.component';
 import { CheckMaritalStatusDirective } from './directives/check-marital-status.directive';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CheckDateDirective } from './directives/check-date.directive';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     ModifyComponent,
     CheckMaritalStatusDirective,
     ProfileComponent,
+    CheckDateDirective,
   ],
   imports: [
     BrowserModule,

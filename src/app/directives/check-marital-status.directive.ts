@@ -12,7 +12,6 @@ import { AbstractControl, ValidationErrors, Validator,NG_VALIDATORS } from '@ang
 })
 export class CheckMaritalStatusDirective implements Validator{
 
-
   constructor() { }
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {

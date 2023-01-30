@@ -19,6 +19,7 @@ export class ModifyComponent {
 
 
   sendMessage(){
+    console.log("date al send"+this.date);
     alert('Evento '+(this.id+1)+' modificado');
     this.messageEvent.emit({id:this.id,name:this.name,type:this.type,date:this.date,location:this.location,price:this.price
     })

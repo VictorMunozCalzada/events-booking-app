@@ -48,7 +48,15 @@
         id="date"
         placeholder="date"
         [(ngModel)]="date"
+        appCheckDate
+        #dateControl="ngModel"
         />
+    </div>
+    <div
+      *ngIf="dateControl.errors?.['CheckDateDirective']
+      && dateControl.touched"
+      class="form-text text-danger">
+      Fecha maxima de un año desde hoy
     </div>
     <div class="form-group p-3">
       <label for="password">Location</label>

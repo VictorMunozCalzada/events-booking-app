@@ -16,9 +16,9 @@ export class UserService {
     let users:User[] = [];
 
     // Fix Users
-    users.push(new User("admin", "admin123", "admin@email.com", "soltero", "hombre", "trainning"));
-    users.push(new User("victor","victor", "victor@email.com", "soltero", "hombre", "Programming"));
-    users.push(new User("mostafa","mostafa", "mostafa@email.com", "soltero", "hombre", "trainning"));
+    users.push(new User("admin", "admin123", "admin@email.com", "soltero", "hombre", ["Juegos"]));
+    users.push(new User("victor","victor", "victor@email.com", "soltero", "hombre", ["Deportes"]));
+    users.push(new User("mostafa","mostafa", "mostafa@email.com", "soltero", "hombre", ["Moda"]));
 
     // Dinamic users
     let names = ["raul","sandra","eloy","irene","pablo","pedro","laura"] 
@@ -26,7 +26,7 @@ export class UserService {
     let emails = ["email@email.com", "email@email.com", "email@email.com", "email@email.com", "email@email.com"];
     let civil_status = ["Soltero/a","Casado/a","Divorciado/a"];
     let gender = ["Hombre","Mujer","Otros"];
-    let interests = ["Juegos","Deportes","Moda"];
+    let interests = [["Juegos"],["Deportes"],["Moda"]];
 
     for (let i = 0; i < 17; i++) {
       let j:number = Math.trunc(Math.random() * 5);
@@ -37,6 +37,7 @@ export class UserService {
   }
 
   addUser(user:User){
+    //en este momento se añadiría a una base de datos
     let users:User[] = [];
     users=this.getUserBoard();
     users.push(user);

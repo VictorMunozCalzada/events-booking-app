@@ -15,6 +15,7 @@ import { ModifyComponent } from './components/modify/modify.component';
 import { CheckMaritalStatusDirective } from './directives/check-marital-status.directive';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CheckDateDirective } from './directives/check-date.directive';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { CheckDateDirective } from './directives/check-date.directive';
     FontAwesomeModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

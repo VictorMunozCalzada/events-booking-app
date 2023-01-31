@@ -95,15 +95,15 @@ export class RegisterComponent implements OnInit {
   }
 
   submit():void {
-    const userToAdd= new User(
+    this.user= new User(
       this.registerForm.value.username!,
       this.registerForm.value.password!,
       this.registerForm.value.email!,
       this.registerForm.value.maritalStatus,
       this.registerForm.value.gender,
-      // this.registerForm.value.interestsGroup!
-      "interests")
+      this.interestsChecked
+      )
       
-    this.authService.register(userToAdd);
+    this.authService.register(this.user);
   }
 }

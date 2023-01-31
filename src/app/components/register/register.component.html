@@ -1,6 +1,6 @@
 <header
-  class="site-header d-flex flex-column justify-content-center
-  align-items-center">
+  class="site-header d-flex flex-column justify-content-center align-items-center"
+>
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-12 text-center">
@@ -15,7 +15,8 @@
     <form
       class="row g-3 border rounded p-3"
       [formGroup]="registerForm"
-      (ngSubmit)="submit()">
+      (ngSubmit)="submit()"
+    >
       <div class="col-md-12">
         <h2 class="text-center display-6">
           <i class="fa-solid fa-user-plus"></i>
@@ -28,23 +29,26 @@
           class="form-control"
           id="username"
           formControlName="username"
-          />
+        />
         <div
           *ngIf="this.registerForm.get('username')?.errors?.['required'] &&
           this.registerForm.get('username')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           El nombre de usuario es obligatorio.
         </div>
         <div
           *ngIf="this.registerForm.get('username')?.errors?.['minlength'] &&
           this.registerForm.get('username')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           Minimo 6 caracteres.
         </div>
         <div
           *ngIf="this.registerForm.get('username')?.errors?.['pattern'] &&
           this.registerForm.get('username')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           Solo letras.
         </div>
       </div>
@@ -56,17 +60,19 @@
           class="form-control"
           id="email"
           formControlName="email"
-          />
+        />
         <div
           *ngIf="this.registerForm.get('email')?.errors?.['required'] &&
           this.registerForm.get('email')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           El email es obligatorio.
         </div>
         <div
           *ngIf="this.registerForm.get('email')?.errors?.['pattern'] &&
           this.registerForm.get('email')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           El email no tiene el formato correcto
         </div>
       </div>
@@ -78,29 +84,34 @@
           class="form-control"
           id="password"
           formControlName="password"
-          />
+        />
         <div
           *ngIf="this.registerForm.get('password')?.errors?.['required'] &&
           this.registerForm.get('password')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           La contraseña es obligatoria.
         </div>
         <div
           *ngIf="this.registerForm.get('password')?.errors?.['minlength'] &&
           this.registerForm.get('password')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           Minimo 8 caracteres.
         </div>
         <div
           *ngIf="this.registerForm.get('password')?.errors?.['pattern'] &&
           this.registerForm.get('password')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           La contraseña tiene que contener solo letras o numeros
         </div>
       </div>
 
       <div class="col-md-6">
-        <label for="retry-password" class="form-label">Repite contraseña:</label>
+        <label for="retry-password" class="form-label"
+          >Repite contraseña:</label
+        >
         <input
           type="password"
           class="form-control"
@@ -108,17 +119,19 @@
           formControlName="retryPassword"
           appCheckPass
           [parametro]="this.registerForm.value.password"
-          />
+        />
         <div
           *ngIf="this.registerForm.get('retryPassword')?.errors?.['required'] &&
           this.registerForm.get('retryPassword')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           La contraseña es obligatoria.
         </div>
         <div
           *ngIf="this.registerForm.get('retryPassword')?.errors?.['checkPass']
           && this.registerForm.get('retryPassword')?.touched"
-          class="form-text text-danger">
+          class="form-text text-danger"
+        >
           Contraseñas deben coincidir
         </div>
       </div>
@@ -129,7 +142,8 @@
           id="maritalStatus"
           class="form-select"
           formControlName="maritalStatus"
-          appCheckMaritalStatus>
+          appCheckMaritalStatus
+        >
           <option *ngFor="let status of maritalStatusOptions">
             {{ status }}
           </option>
@@ -138,7 +152,8 @@
       <div
         *ngIf="this.registerForm.get('maritalStatus')?.errors?.['checkMaritalStatus']
         && this.registerForm.get('maritalStatus')?.touched"
-        class="form-text text-danger">
+        class="form-text text-danger"
+      >
         Debe seleccionar un valor válido
       </div>
 
@@ -152,7 +167,7 @@
               value="{{ gender }}"
               id="{{ gender }}"
               formControlName="gender"
-              />
+            />
             {{ gender }}
           </label>
         </div>
@@ -168,19 +183,10 @@
               value="{{ interest }}"
               id="flexCheckDefault"
               (change)="onCheckChange($event)"
-              />
+            />
             {{ interest }}
           </label>
         </div>
-        <!-- <div
-        class="invalid-feedback"
-        *ngIf="
-          this.registerForm.controls['interestsGroup'].errors &&
-          this.registerForm.controls['interestsGroup'].errors
-        "
-      >
-        At least one checkbox is required to check
-      </div> -->
       </div>
 
       <div class="col-12">
@@ -190,30 +196,68 @@
             type="checkbox"
             formControlName="acceptConditions"
             id="acceptConditions"
-            />
+          />
           <label class="form-check-label" for="acceptConditions">
             Aceptar terminos y condiciones.
           </label>
         </div>
-        <!-- <div
-        class="form-text text-danger"
-        *ngIf="
-          this.registerForm.controls['acceptConditions'].errors &&
-          this.registerForm.controls['acceptConditions'].errors?.['required']
-        "
-      >
-        Es obligatorio marcar esta casilla
-      </div> -->
       </div>
       <div class="col-12">
         <button
           type="submit"
           class="btn btn-success"
           type="submit"
-          [disabled]="registerForm.invalid">
+          data-bs-toggle="modal"
+          data-bs-target="#dataModal"
+          [disabled]="registerForm.invalid"
+        >
           Registrarse
         </button>
       </div>
     </form>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="dataModal"
+      tabindex="-1"
+      aria-labelledby="dataModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="dataModalLabel">Cser data</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body fw-bold">
+            <p>rRegistered successfully!</p>
+            <p>Username: {{ registerForm.value.username }}</p>
+            <p>Email: {{ registerForm.value.email }}</p>
+            <p>Password: {{ registerForm.value.password }}</p>
+            <p>Marital status: {{ registerForm.value.maritalStatus }}</p>
+            <p>Gender: {{ registerForm.value.gender }}</p>
+            <p>Interests:</p>
+            <p *ngFor="let interest of interestsChecked">
+              {{ interest }}
+            </p>
+            <br />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

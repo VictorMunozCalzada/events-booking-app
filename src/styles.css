@@ -1085,6 +1085,13 @@
     color: var(--white-color);
   }
   
+
+
+.modal-backdrop {
+  z-index: -1;
+}
+
+
   
   /*---------------------------------------
     RESPONSIVE STYLES               

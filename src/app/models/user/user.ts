@@ -5,9 +5,9 @@ export class User {
     private _email :string;
     private _civilStatus :string;
     private _gender :string;
-    private _interest_info:string;
+    private _interest_info:string [];
 
-    constructor(username:string, password:string, email:string, civilStatus:string, gender:string, interest_info:string){
+    constructor(username:string, password:string, email:string, civilStatus:string, gender:string, interest_info:string []){
         this._username=username;
         this._password=password;
         this._role="comprador";
@@ -35,7 +35,7 @@ export class User {
     public get gender(): string{
         return this._gender;
     }
-    public get interest_info(): string{
+    public get interest_info(): string [] {
         return this._interest_info;
     }
 }

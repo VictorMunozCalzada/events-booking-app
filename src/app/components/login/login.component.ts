@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import {Router} from "@angular/router"
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   role!:string;
 
-  constructor(private authService: AuthService, private storageService: StorageService, private router: Router){}
+  constructor(private authService: AuthService, private storageService: StorageService, private userCookie: CookieService, private router: Router){}
 
 
   ngOnInit(): void {
@@ -38,8 +39,11 @@ export class LoginComponent implements OnInit {
     this.user = this.authService.login(username, password)!;
 
     if(this.user != null) {
-      // Save on SessionStorage
+      // Save on localStorage
       this.storageService.saveUser(this.user);
+      // Save on Cookie
+      this.userCookie.set('userCookie', JSON.stringify(this.user), {expires: 3});
+
       this.isLoginFailed = false;
       this.role = this.storageService.getUser()._role;
       console.log(this.role);
@@ -48,9 +52,5 @@ export class LoginComponent implements OnInit {
       this.errorMessage = "error";
       this.isLoginFailed = true;
     }
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }

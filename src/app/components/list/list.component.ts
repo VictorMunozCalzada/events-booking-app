@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from '../../models/event/event';
 
@@ -16,8 +16,9 @@ export class ListComponent implements OnInit {
 
   // Filter
   eventosFiltrado: Event[] = [];
-  sizeFilter!: string;
+  locationFilter!: string;
   priceFilter!: number;
+  typeFilter!: string;
 
   //Event
   id!:number;
@@ -39,16 +40,20 @@ export class ListComponent implements OnInit {
     this.cp = 1;
 
     this.eventosFiltrado = this.events;
-    this.sizeFilter = "";
+    this.locationFilter = "";
+    this.typeFilter = "";
     this.priceFilter = 30;
   }
 
   filter(){
-    console.log(this.sizeFilter);
+    console.log(this.locationFilter);
 
     this.eventosFiltrado = this.events.filter(value => {
+      console.log(value);
+      console.log("Array filtrado: ",this.eventosFiltrado.length);
+      console.log("Array anterior: ",this.events.length);
 
-      if(value.name.indexOf(this.sizeFilter.toUpperCase()) != -1){
+      if(value.location.indexOf(this.locationFilter.toLowerCase()) != -1){
         if(value.price <= this.priceFilter)
           return true;
       }
@@ -62,7 +67,7 @@ export class ListComponent implements OnInit {
       if (event.id==e.id){
         const indexToDelete = this.events.findIndex(i => i.id == e.id);
         this.events.splice(indexToDelete, 1);
-        alert('Evento '+(e.id+1)+' eliminado');
+        this.filter();
       }
     });
   }

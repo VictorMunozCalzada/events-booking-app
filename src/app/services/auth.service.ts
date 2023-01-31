@@ -29,6 +29,10 @@ export class AuthService {
     return userSend;
     };
 
+    logout(): void {
+          this._isLoggedIn.next(false);
+      };
+
   register(user:User):void {
      this.userService.addUser(user);
 

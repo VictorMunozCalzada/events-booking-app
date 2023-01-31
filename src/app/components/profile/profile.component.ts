@@ -31,9 +31,6 @@ export class ProfileComponent implements OnInit{
       this.gender = this.storageService.getUser()._gender;
       this.civilStatus = this.storageService.getUser()._civilStatus;
       this.interests = this.storageService.getUser()._interest_info;
-
-      console.log(this.username);
-      console.log(this.role);
     }
   }
 }

@@ -41,7 +41,6 @@ export class UserService {
     let users:User[] = [];
     users=this.getUserBoard();
     users.push(user);
-    console.log(users);
   }
 
 }

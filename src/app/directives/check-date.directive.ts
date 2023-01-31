@@ -15,23 +15,17 @@ export class CheckDateDirective implements Validator{
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
 
-console.log("control.value"+control.value);
 
 const now = new Date();
 const then = new Date(control.value);
-console.log(now);
-console.log(then);
 
 let dayDif = then.getTime() - now.getTime();
 dayDif=dayDif / (1000 * 3600 * 24);
 
-console.log('then is', dayDif, 'days more than now.');
 
 if (dayDif < 365) {
-  console.log("netra en if");
   return null;
 }else{
-  console.log("netra en else");
   return {'CheckDateDirective': true};
 }
 }

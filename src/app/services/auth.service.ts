@@ -18,7 +18,6 @@ export class AuthService {
     let userBoard = [];
     userBoard = this.userService.getUserBoard();
     let userSend!:User;
-    console.log(userBoard);
 
     userBoard.forEach((user: User) => {
       if(user.username === username && user.password === password) {

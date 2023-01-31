@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Check the obserbable status
-    this.authService.isLoggedIn.subscribe(status => {this.isLoggedIn = status; console.log("isLogged " ,this.isLoggedIn)});
+    this.authService.isLoggedIn.subscribe(status => {this.isLoggedIn = status;});
     // Check if user is in localStorage
     this.isLoggedIn = this.storageService.isLoggedIn();
 

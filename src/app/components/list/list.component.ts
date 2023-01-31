@@ -46,17 +46,14 @@ export class ListComponent implements OnInit {
   }
 
   filter(){
-    console.log(this.locationFilter);
 
     this.eventosFiltrado = this.events.filter(value => {
-      console.log(value);
-      console.log("Array filtrado: ",this.eventosFiltrado.length);
-      console.log("Array anterior: ",this.events.length);
 
       if(value.location.indexOf(this.locationFilter.toLowerCase()) != -1){
-        if(value.price <= this.priceFilter)
-          return true;
-      }
+        if(value.type.indexOf(this.typeFilter.toLowerCase()) != -1){
+          if(value.price <= this.priceFilter)
+            return true;
+        }}
       return false;
 
     });
@@ -73,8 +70,6 @@ export class ListComponent implements OnInit {
   }
 
   modifyEvent(event:any){
-    console.log(event.name);
-    console.log(event.date);
     this.modified=true;
     this.id = event.id;
     this.name = event.name;

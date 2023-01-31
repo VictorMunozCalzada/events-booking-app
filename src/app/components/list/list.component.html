@@ -1,6 +1,6 @@
 <header
-  class="site-header d-flex flex-column justify-content-center align-items-center"
->
+  class="site-header d-flex flex-column justify-content-center
+  align-items-center">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-12 text-center">
@@ -26,7 +26,7 @@
           type="text"
           [(ngModel)]="locationFilter"
           (ngModelChange)="filter()"
-        />
+          />
       </div>
       <div class="col-lg-4 col-12">
         Filter by type:
@@ -36,7 +36,7 @@
           type="text"
           [(ngModel)]="typeFilter"
           (ngModelChange)="filter()"
-        />
+          />
       </div>
       <div class="col-lg-4 col-12">
         Filter by price:
@@ -47,24 +47,30 @@
           max="30"
           [(ngModel)]="priceFilter"
           (ngModelChange)="filter()"
-        />
+          />
         {{ priceFilter }}
       </div>
+    </div>
+    <div *ngIf="eventosFiltrado.length<1">
+      <p class="text-danger">No events found!</p>
     </div>
     <div class="row justify-content-center">
       <div class="col-lg-12 col-12">
         <div class="section-title-wrap mb-5">
           <h4 class="section-title">Lastest events</h4>
         </div>
+        <div class="d-flex">
+          <p>Number of events:</p>
+          <p>{{ events.length }}</p>
+        </div>
       </div>
 
       <div
         class="col-lg-6 col-12 mb-4 mb-lg-0"
         *ngFor="
-          let event of eventosFiltrado
-            | paginate : { itemsPerPage: ipp, currentPage: cp }
-        "
-      >
+        let event of eventosFiltrado
+        | paginate : { itemsPerPage: ipp, currentPage: cp }
+        ">
         <div class="custom-block d-flex m-2">
           <div class="">
             <div class="custom-block-icon-wrap">
@@ -74,13 +80,12 @@
                   src="/assets/images/podcast/11683425_4790593.jpg"
                   class="custom-block-image img-fluid"
                   alt=""
-                />
+                  />
               </a>
             </div>
 
             <div class="mt-2">
-              <a class="btn custom-btn"
-                ><i class="fa-solid fa-cart-shopping"></i>
+              <a class="btn custom-btn"><i class="fa-solid fa-cart-shopping"></i>
                 Buy
               </a>
             </div>
@@ -93,9 +98,7 @@
                 {{ event.date }}
               </small>
 
-              <small
-                >Code <span class="badge">{{ event.id + 1 }}</span></small
-              >
+              <small>Code <span class="badge">{{ event.id + 1 }}</span></small>
             </div>
 
             <div class="profile-block">
@@ -106,14 +109,13 @@
                 <strong class="text-capitalize">{{ event.type }}</strong>
               </p>
               <p class="text-capitalize mb-0">
-                <i class="fa-solid fa-location-dot me-1"></i
-                >{{ event.location }}
+                <i class="fa-solid fa-location-dot me-1"></i>{{ event.location
+                }}
               </p>
             </div>
 
             <div
-              class="custom-block-bottom d-flex justify-content-between mt-3"
-            >
+              class="custom-block-bottom d-flex justify-content-between mt-3">
               <a>
                 <span>Price: {{ event.price }} &euro;</span>
               </a>
@@ -125,15 +127,15 @@
               class="btn btn-dark mb-3"
               data-bs-toggle="modal"
               data-bs-target="#modifyModal"
-              (click)="modifyEvent(event)"
-              ><i class="fa-solid fa-screwdriver-wrench"></i> Modify
+              (click)="modifyEvent(event)"><i class="fa-solid
+                fa-screwdriver-wrench"></i> Modify
             </a>
             <a
               class="btn btn-danger"
               data-bs-toggle="modal"
               data-bs-target="#deleteModal"
-              (click)="deleteEvent(event)"
-              ><i class="fa-solid fa-trash"></i> Delete
+              (click)="deleteEvent(event)"><i class="fa-solid fa-trash"></i>
+              Delete
             </a>
           </div>
         </div>
@@ -168,8 +170,7 @@
         <div class="col-lg-5 col-12 mx-auto">
           <div class="mt-5">
             <pagination-controls
-              (pageChange)="cp = $event"
-            ></pagination-controls>
+              (pageChange)="cp= $event"></pagination-controls>
           </div>
         </div>
       </div>
@@ -180,8 +181,7 @@
         id="modifyModal"
         tabindex="-1"
         aria-labelledby="modifyModalLabel"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -190,8 +190,7 @@
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <app-modify
@@ -202,15 +201,13 @@
                 [date]="date"
                 [location]="location"
                 [price]="price"
-                (messageEvent)="getEvent($event)"
-              ></app-modify>
+                (messageEvent)="getEvent($event)"></app-modify>
             </div>
             <div class="modal-footer">
               <button
                 type="button"
                 class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+                data-bs-dismiss="modal">
                 Close
               </button>
             </div>
@@ -224,8 +221,7 @@
         id="exampleModalToggle2"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1"
-      >
+        tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -236,8 +232,7 @@
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div class="modal-body">
               Event with code {{ id + 1 }} modified successfully!
@@ -246,8 +241,7 @@
               <button
                 type="button"
                 class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+                data-bs-dismiss="modal">
                 Close
               </button>
             </div>
@@ -261,8 +255,7 @@
         id="deleteModal"
         tabindex="-1"
         aria-labelledby="deleteModalLabel"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -271,16 +264,14 @@
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div class="modal-body">Event has been deleted successfully!</div>
             <div class="modal-footer">
               <button
                 type="button"
                 class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+                data-bs-dismiss="modal">
                 Close
               </button>
             </div>
